@@ -41,4 +41,7 @@ public class PessoaService {
         );
     }
 
+    public Flux<Pessoa> buscarPessoas(String t) {
+        return pessoalRepository.findByTermoDeBusca(t.toLowerCase()); // limitar a 50 resultados
+    }
 }

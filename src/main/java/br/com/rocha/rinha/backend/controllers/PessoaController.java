@@ -19,8 +19,8 @@ public class PessoaController {
 
 
     @GetMapping
-    public Flux<Pessoa> getAll() {
-        return pessoaService.listaPessoas();
+    public Flux<Pessoa> getAll(@RequestParam(required = false, name = "t") String t) {
+        return t != null && !t.isEmpty() ? pessoaService.buscarPessoas(t) : pessoaService.listaPessoas();
     }
 
     @PostMapping
