@@ -1,7 +1,6 @@
 package br.com.rocha.rinha.backend.models.Exception;
 
 import lombok.Getter;
-import lombok.ToString;
 
 
 @Getter

@@ -5,12 +5,8 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.regex.Pattern;
 
 public class StringValidator implements ConstraintValidator<StringOnly, Object> {
-
-    private static final Pattern VALID_PATTERN = Pattern.compile("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$");
-
 
     @Override
     public void initialize(StringOnly constraint) {
@@ -23,9 +19,9 @@ public class StringValidator implements ConstraintValidator<StringOnly, Object> 
         }
 
         if (value instanceof String) {
-            return !isNumeric((String) value);
+            return isNumeric((String) value);
         } else if (value instanceof Collection<?> collection) {
-            return collection.stream().allMatch(item -> item instanceof String && !isNumeric((String) item));
+            return collection.stream().allMatch(item -> item instanceof String && isNumeric((String) item));
         }
 
         return false; // Não é um tipo suportado
@@ -34,9 +30,9 @@ public class StringValidator implements ConstraintValidator<StringOnly, Object> 
     private boolean isNumeric(String str) {
         try {
             new BigDecimal(str);
-            return true; // É um número
+            return false; // É um número
         } catch (NumberFormatException e) {
-            return false; // Não é um número, é uma string
+            return true; // Não é um número, é uma string
         }
     }
 
