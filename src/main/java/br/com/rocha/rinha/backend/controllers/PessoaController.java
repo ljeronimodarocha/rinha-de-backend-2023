@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
-@RequestMapping("/pessoas")
 @RestController
 @AllArgsConstructor
 public class PessoaController {
@@ -18,20 +16,25 @@ public class PessoaController {
     private PessoaService pessoaService;
 
 
-    @GetMapping
+    @GetMapping("/pessoas")
     public Flux<Pessoa> getAll(@RequestParam(required = false, name = "t") String t) {
         return t != null && !t.isEmpty() ? pessoaService.buscarPessoas(t) : pessoaService.listaPessoas();
     }
 
-    @PostMapping
+    @PostMapping("/pessoas")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Pessoa> addPessoas(@Valid @RequestBody Pessoa pessoa) {
         return this.pessoaService.cadastraPessoa(pessoa);
     }
 
-    @GetMapping("/{id}")
-    public Mono<Pessoa> buscaPessoaPeloID(@PathVariable("id") String id){
+    @GetMapping("/pessoas/{id}")
+    public Mono<Pessoa> buscaPessoaPeloID(@PathVariable("id") String id) {
         return pessoaService.buscaPessoaPeloID(id);
+    }
+
+    @GetMapping("/contagem-pessoas")
+    public Mono<Long> contagem() {
+        return pessoaService.contagem();
     }
 
 
