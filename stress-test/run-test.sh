@@ -10,7 +10,7 @@ WORKSPACE=/media/lucas/volume1/desenvolvimento/rinha.backend/stress-test
 
 sh $GATLING_BIN_DIR/gatling.sh -rm local -s RinhaBackendSimulation \
     -rd "DESCRICAO" \
-    -rf $WORKSPACE/user-files/results \
+    -rf $HOME/user-files/results \
     -sf $WORKSPACE/user-files/simulations \
     -rsf $WORKSPACE/user-files/resources \
 
