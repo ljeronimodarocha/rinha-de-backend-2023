@@ -13,9 +13,9 @@ public interface PessoalRepository extends ReactiveMongoRepository<Pessoa, Strin
     Mono<Pessoa> findFirstByApelido(String apelido);
 
     @Query("{'$or': [" +
-            "{'nome': {$regex: ?0, $options: 'i'}}, " +
-            "{'apelido': {$regex: ?0, $options: 'i'}}, " +
-            "{'stack': {$regex: ?0, $options: 'i'}}" +
+            "{'nome': {$regex: ?0}}, " +
+            "{'apelido': {$regex: ?0}}, " +
+            "{'stack': {$regex: ?0}}" +
             "]}")
     Flux<Pessoa> findByTermoDeBusca(String i);
 

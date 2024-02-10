@@ -4,7 +4,8 @@
 # curl -v -XGET "http://localhost:9999/pessoas?t=xpto"
 # curl -v "http://localhost:9999/contagem-pessoas"
 
-GATLING_BIN_DIR=/home/lucas/.local/gatling/bin
+#GATLING_BIN_DIR=/home/lucas/.local/gatling/bin
+GATLING_BIN_DIR=/usr/local/sbin/gatling/bin
 
 WORKSPACE=/media/lucas/volume1/desenvolvimento/rinha.backend/stress-test
 

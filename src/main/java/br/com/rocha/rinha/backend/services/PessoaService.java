@@ -27,7 +27,7 @@ public class PessoaService {
         return pessoalRepository.findAll();
     }
 
-    @CachePut(value = "pessoaCache", key = "#id")
+    //@CachePut(value = "pessoaCache", key = "#id")
     public Mono<Pessoa> cadastraPessoa(Pessoa pessoa) {
         return pessoalRepository.findFirstByApelido(pessoa.getApelido())
                 .flatMap(p ->
@@ -36,11 +36,11 @@ public class PessoaService {
                 .then(pessoalRepository.save(pessoa));
     }
 
-    @Cacheable(value = "pessoaCache", key = "#id")
+    //@Cacheable(value = "pessoaCache", key = "#id")
     public Mono<Pessoa> buscaPessoaPeloID(String id) {
         return pessoalRepository.findById(id).switchIfEmpty(
                 Mono.error(new UsuarioNaoEncontrado("Pessoa não encontrada"))
-        ).cache();
+        );
     }
 
     public Flux<Pessoa> buscarPessoas(String t) {

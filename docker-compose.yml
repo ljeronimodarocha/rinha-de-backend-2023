@@ -66,6 +66,8 @@ services:
         MONGO_INITDB_ROOT_USERNAME: root
         MONGO_INITDB_ROOT_PASSWORD: root
         MONGO_INITDB_DATABASE: rinha
+    volumes:
+      - /home/lucas/docker/Volumes/MongoDB:/data/db
     ports:
       - "27017:27017"
     deploy:
